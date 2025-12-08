@@ -29,6 +29,7 @@ from m5.objects.BaseAtomicSimpleCPU import BaseAtomicSimpleCPU
 from m5.objects.BaseNonCachingSimpleCPU import BaseNonCachingSimpleCPU
 from m5.objects.BaseTimingSimpleCPU import BaseTimingSimpleCPU
 from m5.objects.BaseO3CPU import BaseO3CPU
+from m5.objects.BaseMinorCPU import BaseMinorCPU
 from m5.objects.X86Decoder import X86Decoder
 from m5.objects.X86MMU import X86MMU
 from m5.objects.X86LocalApic import X86LocalApic
@@ -47,6 +48,9 @@ class X86NonCachingSimpleCPU(BaseNonCachingSimpleCPU, X86CPU):
     mmu = X86MMU()
 
 class X86TimingSimpleCPU(BaseTimingSimpleCPU, X86CPU):
+    mmu = X86MMU()
+
+class X86MinorCPU(BaseMinorCPU, X86CPU):
     mmu = X86MMU()
 
 class X86O3CPU(BaseO3CPU, X86CPU):
