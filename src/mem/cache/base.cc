@@ -62,6 +62,7 @@
 #include "params/BaseCache.hh"
 #include "params/WriteAllocator.hh"
 #include "sim/cur_tick.hh"
+#include "enums/Clusivity.hh"
 
 namespace gem5
 {
@@ -551,8 +552,12 @@ BaseCache::recvTimingResp(PacketPtr pkt)
         DPRINTF(Cache, "Block for addr %#llx being updated in Cache\n",
                 pkt->getAddr());
 
-        const bool allocate = (writeAllocator && mshr->wasWholeLineWrite) ?
-            writeAllocator->allocate() : mshr->allocOnFill();
+        // const bool allocate = (writeAllocator && mshr->wasWholeLineWrite) ?
+        //     writeAllocator->allocate() : mshr->allocOnFill();
+        const bool allocate = (clusivity == enums::mostly_excl) ?  
+            false : ((writeAllocator && mshr->wasWholeLineWrite) ? 
+            writeAllocator->allocate() : mshr->allocOnFill());
+
         blk = handleFill(pkt, blk, writebacks, allocate);
         assert(blk != nullptr);
         ppFill->notify(pkt);
