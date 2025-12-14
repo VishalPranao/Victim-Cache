@@ -59,7 +59,7 @@ class VictimCacheL2(Cache):
     # Size: 64 entries Ã— 64B blocks = 4KB
     size = '4kB'  # 64 entries
     
-    assoc = 64 
+    assoc = 16
     
     tag_latency = 1
     data_latency = 1

@@ -1,6 +1,0 @@
-we only changed assoc in the spec file, from either 16 or 64 for each run. 
-
-we directly edited the code assuming VC would be enabled and ignored mostly_excl
-aside from baseline testing,
-
-so to run our VC you just need the --enable-victim-cache flag to be enabled.
