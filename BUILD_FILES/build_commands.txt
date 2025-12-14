@@ -1,1 +1,5 @@
-build/ECE565-X86/gem5.opt configs/spec/spec_victim_cache_config.py --cpu-type=X86MinorCPU  --benchmark=nab_s --enable-fast-forward --caches --enable-victim-cache
+build/ECE565-X86/gem5.opt --outdir=/home/min/a/chen4249/Victim-Cache/BUILD_FILES/NAB configs/spec/spec_victim_cache_config.py --cpu-type=X86MinorCPU  --benchmark=nab_s --enable-fast-forward --caches --enable-victim-cache
+build/ECE565-X86/gem5.opt --outdir=/home/min/a/chen4249/Victim-Cache/BUILD_FILES/MCF configs/spec/spec_victim_cache_config.py --cpu-type=X86MinorCPU  --benchmark=mcf_s --enable-fast-forward --caches --enable-victim-cache
+build/ECE565-X86/gem5.opt --outdir=/home/min/a/chen4249/Victim-Cache/BUILD_FILES/EXCHANGE2 configs/spec/spec_victim_cache_config.py --cpu-type=X86MinorCPU  --benchmark=exchange2_s --enable-fast-forward --caches --enable-victim-cache
+build/ECE565-X86/gem5.opt --outdir=/home/min/a/chen4249/Victim-Cache/BUILD_FILES/BWAVES configs/spec/spec_victim_cache_config.py --cpu-type=X86MinorCPU  --benchmark=bwaves_s --enable-fast-forward --caches --enable-victim-cache
+build/ECE565-X86/gem5.opt --outdir=/home/min/a/chen4249/Victim-Cache/BUILD_FILES/LBM configs/spec/spec_victim_cache_config.py --cpu-type=X86MinorCPU  --benchmark=lbm_s --enable-fast-forward --caches --enable-victim-cache
