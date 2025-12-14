@@ -40,7 +40,7 @@
                 "app_path": "/proc",
                 "eventq_index": 0,
                 "host_paths": [
-                    "/home/min/a/chen4249/Victim-Cache/BUILD_FILES/LBM/fs/proc"
+                    "/home/min/a/chen4249/Victim-Cache/BUILD_FILES/MCF/fs/proc"
                 ]
             },
             {
@@ -51,7 +51,7 @@
                 "app_path": "/sys",
                 "eventq_index": 0,
                 "host_paths": [
-                    "/home/min/a/chen4249/Victim-Cache/BUILD_FILES/LBM/fs/sys"
+                    "/home/min/a/chen4249/Victim-Cache/BUILD_FILES/MCF/fs/sys"
                 ]
             },
             {
@@ -62,7 +62,7 @@
                 "app_path": "/tmp",
                 "eventq_index": 0,
                 "host_paths": [
-                    "/home/min/a/chen4249/Victim-Cache/BUILD_FILES/LBM/fs/tmp"
+                    "/home/min/a/chen4249/Victim-Cache/BUILD_FILES/MCF/fs/tmp"
                 ]
             },
             {
@@ -314,26 +314,22 @@
                         "name": "workload",
                         "path": "system.cpu.workload",
                         "cmd": [
-                            "/home/yara/mithuna2/green456/benchmark_sources/SPEC-OSG-2021/SPEC_2017/benchspec/CPU/619.lbm_s/run/run_base_refspeed_spectre_safebet-m64.0000/lbm_s_base.spectre_safebet-m64",
-                            "2000",
-                            "reference.dat",
-                            "0",
-                            "0",
-                            "200_200_260_ldc.of"
+                            "/home/yara/mithuna2/green456/benchmark_sources/SPEC-OSG-2021/SPEC_2017/benchspec/CPU/605.mcf_s/run/run_base_refspeed_spectre_safebet-m64.0000/mcf_s_base.spectre_safebet-m64",
+                            "inp.in"
                         ],
-                        "cwd": "/home/yara/mithuna2/green456/benchmark_sources/SPEC-OSG-2021/SPEC_2017/benchspec/CPU/619.lbm_s/run/run_base_refspeed_spectre_safebet-m64.0000/",
+                        "cwd": "/home/yara/mithuna2/green456/benchmark_sources/SPEC-OSG-2021/SPEC_2017/benchspec/CPU/605.mcf_s/run/run_base_refspeed_spectre_safebet-m64.0000/",
                         "drivers": [],
                         "egid": 100,
                         "env": [],
                         "errout": "cerr",
                         "euid": 100,
                         "eventq_index": 0,
-                        "executable": "/home/yara/mithuna2/green456/benchmark_sources/SPEC-OSG-2021/SPEC_2017/benchspec/CPU/619.lbm_s/run/run_base_refspeed_spectre_safebet-m64.0000/lbm_s_base.spectre_safebet-m64",
+                        "executable": "/home/yara/mithuna2/green456/benchmark_sources/SPEC-OSG-2021/SPEC_2017/benchspec/CPU/605.mcf_s/run/run_base_refspeed_spectre_safebet-m64.0000/mcf_s_base.spectre_safebet-m64",
                         "gid": 100,
                         "input": "cin",
                         "kvmInSE": false,
                         "maxStackSize": 67108864,
-                        "output": "lbm_s.out",
+                        "output": "inp.out",
                         "pgid": 100,
                         "pid": 100,
                         "ppid": 0,

@@ -164,7 +164,7 @@ fontsize=14;
 label="workload \n: Process";
 shape=Mrecord;
 style="rounded, filled";
-tooltip="cmd&#61;/home/yara/mithuna2/green456/benchmark_sources/SPEC-OSG-2021/SPEC_2017/benchspec/CPU/619.lbm_s/run/run_base_refspeed_spectre_safebet-m64.0000/lbm_s_base.spectre_safebet-m64 2000 reference.dat 0 0 200_200_260_ldc.of&#10;\cwd&#61;/home/yara/mithuna2/green456/benchmark_sources/SPEC-OSG-2021/SPEC_2017/benchspec/CPU/619.lbm_s/run/run_base_refspeed_spectre_safebet-m64.0000/&#10;\drivers&#61;&#10;\egid&#61;100&#10;\env&#61;&#10;\errout&#61;cerr&#10;\euid&#61;100&#10;\eventq_index&#61;0&#10;\executable&#61;/home/yara/mithuna2/green456/benchmark_sources/SPEC-OSG-2021/SPEC_2017/benchspec/CPU/619.lbm_s/run/run_base_refspeed_spectre_safebet-m64.0000/lbm_s_base.spectre_safebet-m64&#10;\gid&#61;100&#10;\input&#61;cin&#10;\kvmInSE&#61;false&#10;\maxStackSize&#61;67108864&#10;\output&#61;lbm_s.out&#10;\pgid&#61;100&#10;\pid&#61;100&#10;\ppid&#61;0&#10;\release&#61;5.1.0&#10;\simpoint&#61;0&#10;\system&#61;system&#10;\uid&#61;100&#10;\useArchPT&#61;false";
+tooltip="cmd&#61;/home/yara/mithuna2/green456/benchmark_sources/SPEC-OSG-2021/SPEC_2017/benchspec/CPU/605.mcf_s/run/run_base_refspeed_spectre_safebet-m64.0000/mcf_s_base.spectre_safebet-m64 inp.in&#10;\cwd&#61;/home/yara/mithuna2/green456/benchmark_sources/SPEC-OSG-2021/SPEC_2017/benchspec/CPU/605.mcf_s/run/run_base_refspeed_spectre_safebet-m64.0000/&#10;\drivers&#61;&#10;\egid&#61;100&#10;\env&#61;&#10;\errout&#61;cerr&#10;\euid&#61;100&#10;\eventq_index&#61;0&#10;\executable&#61;/home/yara/mithuna2/green456/benchmark_sources/SPEC-OSG-2021/SPEC_2017/benchspec/CPU/605.mcf_s/run/run_base_refspeed_spectre_safebet-m64.0000/mcf_s_base.spectre_safebet-m64&#10;\gid&#61;100&#10;\input&#61;cin&#10;\kvmInSE&#61;false&#10;\maxStackSize&#61;67108864&#10;\output&#61;inp.out&#10;\pgid&#61;100&#10;\pid&#61;100&#10;\ppid&#61;0&#10;\release&#61;5.1.0&#10;\simpoint&#61;0&#10;\system&#61;system&#10;\uid&#61;100&#10;\useArchPT&#61;false";
 }
 
 subgraph cluster_system_cpu_isa {
@@ -884,7 +884,7 @@ fontsize=14;
 label="redirect_paths0 \n: RedirectPath";
 shape=Mrecord;
 style="rounded, filled";
-tooltip="app_path&#61;/proc&#10;\eventq_index&#61;0&#10;\host_paths&#61;/home/min/a/chen4249/Victim-Cache/BUILD_FILES/LBM/fs/proc";
+tooltip="app_path&#61;/proc&#10;\eventq_index&#61;0&#10;\host_paths&#61;/home/min/a/chen4249/Victim-Cache/BUILD_FILES/MCF/fs/proc";
 }
 
 subgraph cluster_system_redirect_paths1 {
@@ -896,7 +896,7 @@ fontsize=14;
 label="redirect_paths1 \n: RedirectPath";
 shape=Mrecord;
 style="rounded, filled";
-tooltip="app_path&#61;/sys&#10;\eventq_index&#61;0&#10;\host_paths&#61;/home/min/a/chen4249/Victim-Cache/BUILD_FILES/LBM/fs/sys";
+tooltip="app_path&#61;/sys&#10;\eventq_index&#61;0&#10;\host_paths&#61;/home/min/a/chen4249/Victim-Cache/BUILD_FILES/MCF/fs/sys";
 }
 
 subgraph cluster_system_redirect_paths2 {
@@ -908,7 +908,7 @@ fontsize=14;
 label="redirect_paths2 \n: RedirectPath";
 shape=Mrecord;
 style="rounded, filled";
-tooltip="app_path&#61;/tmp&#10;\eventq_index&#61;0&#10;\host_paths&#61;/home/min/a/chen4249/Victim-Cache/BUILD_FILES/LBM/fs/tmp";
+tooltip="app_path&#61;/tmp&#10;\eventq_index&#61;0&#10;\host_paths&#61;/home/min/a/chen4249/Victim-Cache/BUILD_FILES/MCF/fs/tmp";
 }
 
 subgraph cluster_system_redirect_paths3 {
