@@ -554,9 +554,20 @@ BaseCache::recvTimingResp(PacketPtr pkt)
 
         // const bool allocate = (writeAllocator && mshr->wasWholeLineWrite) ?
         //     writeAllocator->allocate() : mshr->allocOnFill();
-        const bool allocate = (clusivity == enums::mostly_excl) ?  
-            false : ((writeAllocator && mshr->wasWholeLineWrite) ? 
-            writeAllocator->allocate() : mshr->allocOnFill());
+        bool allow_alloc = true;
+        if (clusivity == enums::mostly_excl) {
+            PacketPtr orig = initial_tgt->pkt;
+            if (!orig->isEviction() &&
+                !orig->cmd.isWriteback() &&
+                orig->cmd != MemCmd::WriteClean) {
+                allow_alloc = false;
+            }
+        }
+
+        const bool allocate = allow_alloc ?
+            ((writeAllocator && mshr->wasWholeLineWrite) ?
+                writeAllocator->allocate() : mshr->allocOnFill()) :
+            false;
 
         blk = handleFill(pkt, blk, writebacks, allocate);
         assert(blk != nullptr);

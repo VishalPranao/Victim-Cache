@@ -633,8 +633,15 @@ Cache::handleAtomicReqMiss(PacketPtr pkt, CacheBlk *&blk,
                        bus_pkt->cmd == MemCmd::UpgradeResp) {
                 // we're updating cache state to allow us to
                 // satisfy the upstream request from the cache
-                blk = handleFill(bus_pkt, blk, writebacks,
-                                 allocOnFill(pkt->cmd));
+                bool allocate = allocOnFill(pkt->cmd);
+                if (clusivity == enums::mostly_excl) {
+                    if (!pkt->isEviction() &&
+                        !pkt->cmd.isWriteback() &&
+                        pkt->cmd != MemCmd::WriteClean) {
+                        allocate = false;
+                    }
+                }
+                blk = handleFill(bus_pkt, blk, writebacks, allocate);
                 satisfyRequest(pkt, blk);
                 maintainClusivity(pkt->fromCache(), blk);
             } else {
