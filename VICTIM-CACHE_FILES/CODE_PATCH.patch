@@ -1,72 +1,70 @@
-bash-4.4$ git diff adam master -- src
 diff --git a/src/mem/cache/base.cc b/src/mem/cache/base.cc
-index 23e3698ab..cf6c9fe22 100644
+index cf6c9fe22..23e3698ab 100644
 --- a/src/mem/cache/base.cc
 +++ b/src/mem/cache/base.cc
-@@ -62,7 +62,6 @@
+@@ -62,6 +62,7 @@
  #include "params/BaseCache.hh"
  #include "params/WriteAllocator.hh"
  #include "sim/cur_tick.hh"
--#include "enums/Clusivity.hh"
++#include "enums/Clusivity.hh"
  
  namespace gem5
  {
-@@ -552,23 +551,8 @@ BaseCache::recvTimingResp(PacketPtr pkt)
+@@ -551,8 +552,23 @@ BaseCache::recvTimingResp(PacketPtr pkt)
          DPRINTF(Cache, "Block for addr %#llx being updated in Cache\n",
                  pkt->getAddr());
  
--        // const bool allocate = (writeAllocator && mshr->wasWholeLineWrite) ?
--        //     writeAllocator->allocate() : mshr->allocOnFill();
--        bool allow_alloc = true;
--        if (clusivity == enums::mostly_excl) {
--            PacketPtr orig = initial_tgt->pkt;
--            if (!orig->isEviction() &&
--                !orig->cmd.isWriteback() &&
--                orig->cmd != MemCmd::WriteClean) {
--                allow_alloc = false;
--            }
--        }
--
--        const bool allocate = allow_alloc ?
--            ((writeAllocator && mshr->wasWholeLineWrite) ?
--                writeAllocator->allocate() : mshr->allocOnFill()) :
--            false;
--
-+        const bool allocate = (writeAllocator && mshr->wasWholeLineWrite) ?
-+            writeAllocator->allocate() : mshr->allocOnFill();
+-        const bool allocate = (writeAllocator && mshr->wasWholeLineWrite) ?
+-            writeAllocator->allocate() : mshr->allocOnFill();
++        // const bool allocate = (writeAllocator && mshr->wasWholeLineWrite) ?
++        //     writeAllocator->allocate() : mshr->allocOnFill();
++        bool allow_alloc = true;
++        if (clusivity == enums::mostly_excl) {
++            PacketPtr orig = initial_tgt->pkt;
++            if (!orig->isEviction() &&
++                !orig->cmd.isWriteback() &&
++                orig->cmd != MemCmd::WriteClean) {
++                allow_alloc = false;
++            }
++        }
++
++        const bool allocate = allow_alloc ?
++            ((writeAllocator && mshr->wasWholeLineWrite) ?
++                writeAllocator->allocate() : mshr->allocOnFill()) :
++            false;
++
          blk = handleFill(pkt, blk, writebacks, allocate);
          assert(blk != nullptr);
          ppFill->notify(pkt);
 diff --git a/src/mem/cache/cache.cc b/src/mem/cache/cache.cc
-index 8d4f67b56..24b3fe721 100644
+index 24b3fe721..8d4f67b56 100644
 --- a/src/mem/cache/cache.cc
 +++ b/src/mem/cache/cache.cc
-@@ -622,8 +622,7 @@ Cache::handleAtomicReqMiss(PacketPtr pkt, CacheBlk *&blk,
+@@ -622,7 +622,8 @@ Cache::handleAtomicReqMiss(PacketPtr pkt, CacheBlk *&blk,
  
                  // write-line request to the cache that promoted
                  // the write to a whole line
--                const bool allocate = (clusivity != enums::mostly_excl) 
--                    && allocOnFill(pkt->cmd) &&
-+                const bool allocate = allocOnFill(pkt->cmd) &&
+-                const bool allocate = allocOnFill(pkt->cmd) &&
++                const bool allocate = (clusivity != enums::mostly_excl) 
++                    && allocOnFill(pkt->cmd) &&
                      (!writeAllocator || writeAllocator->allocate());
                  blk = handleFill(bus_pkt, blk, writebacks, allocate);
                  assert(blk != NULL);
-@@ -633,15 +632,8 @@ Cache::handleAtomicReqMiss(PacketPtr pkt, CacheBlk *&blk,
+@@ -632,8 +633,15 @@ Cache::handleAtomicReqMiss(PacketPtr pkt, CacheBlk *&blk,
                         bus_pkt->cmd == MemCmd::UpgradeResp) {
                  // we're updating cache state to allow us to
                  // satisfy the upstream request from the cache
--                bool allocate = allocOnFill(pkt->cmd);
--                if (clusivity == enums::mostly_excl) {
--                    if (!pkt->isEviction() &&
--                        !pkt->cmd.isWriteback() &&
--                        pkt->cmd != MemCmd::WriteClean) {
--                        allocate = false;
--                    }
--                }
--                blk = handleFill(bus_pkt, blk, writebacks, allocate);
-+                blk = handleFill(bus_pkt, blk, writebacks,
-+                                 allocOnFill(pkt->cmd));
+-                blk = handleFill(bus_pkt, blk, writebacks,
+-                                 allocOnFill(pkt->cmd));
++                bool allocate = allocOnFill(pkt->cmd);
++                if (clusivity == enums::mostly_excl) {
++                    if (!pkt->isEviction() &&
++                        !pkt->cmd.isWriteback() &&
++                        pkt->cmd != MemCmd::WriteClean) {
++                        allocate = false;
++                    }
++                }
++                blk = handleFill(bus_pkt, blk, writebacks, allocate);
                  satisfyRequest(pkt, blk);
                  maintainClusivity(pkt->fromCache(), blk);
              } else {
-(END)
