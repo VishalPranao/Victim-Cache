@@ -440,6 +440,10 @@ class BaseCache : public ClockedObject
      */
     inline bool allocOnFill(MemCmd cmd) const
     {
+        if (victimOnly) {
+            return cmd.isWriteback() || cmd == MemCmd::CleanEvict;
+        }
+
         return clusivity == enums::mostly_incl ||
             cmd == MemCmd::WriteLineReq ||
             cmd == MemCmd::ReadReq ||
@@ -933,6 +937,7 @@ class BaseCache : public ClockedObject
      * that we currently do not support strict clusivity policies.
      */
     const enums::Clusivity clusivity;
+    const bool victimOnly;
 
     /**
      * Is this cache read only, for example the instruction cache, or

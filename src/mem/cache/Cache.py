@@ -106,6 +106,9 @@ class BaseCache(ClockedObject):
     replacement_policy = Param.BaseReplacementPolicy(LRURP(),
         "Replacement policy")
 
+    victim_only = Param.Bool(False,
+        "If true, only allocate on writeback/clean evict (victim cache mode)")
+
     compressor = Param.BaseCacheCompressor(NULL, "Cache compressor.")
     replace_expansions = Param.Bool(True, "Apply replacement policy to " \
         "decide which blocks should be evicted on a data expansion")
@@ -165,4 +168,3 @@ class NoncoherentCache(BaseCache):
     # This is typically a last level cache and any clean
     # writebacks would be unnecessary traffic to the main memory.
     writeback_clean = False
-

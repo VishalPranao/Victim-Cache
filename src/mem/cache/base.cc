@@ -102,6 +102,7 @@ BaseCache::BaseCache(const BaseCacheParams &p, unsigned blk_size)
       numTarget(p.tgts_per_mshr),
       forwardSnoops(true),
       clusivity(p.clusivity),
+      victimOnly(p.victim_only),
       isReadOnly(p.is_read_only),
       replaceExpansions(p.replace_expansions),
       moveContractions(p.move_contractions),
@@ -552,11 +553,8 @@ BaseCache::recvTimingResp(PacketPtr pkt)
         DPRINTF(Cache, "Block for addr %#llx being updated in Cache\n",
                 pkt->getAddr());
 
-        // const bool allocate = (writeAllocator && mshr->wasWholeLineWrite) ?
-        //     writeAllocator->allocate() : mshr->allocOnFill();
-        const bool allocate = (clusivity == enums::mostly_excl) ?  
-            false : ((writeAllocator && mshr->wasWholeLineWrite) ? 
-            writeAllocator->allocate() : mshr->allocOnFill());
+        const bool allocate = (writeAllocator && mshr->wasWholeLineWrite) ?
+            writeAllocator->allocate() : mshr->allocOnFill();
 
         blk = handleFill(pkt, blk, writebacks, allocate);
         assert(blk != nullptr);

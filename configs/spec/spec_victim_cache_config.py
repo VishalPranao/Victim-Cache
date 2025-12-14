@@ -75,6 +75,7 @@ class VictimCacheL2(Cache):
     
     # Disable prefetching
     prefetcher = NULL
+    victim_only = True
 
 # L3 Cache (Real L2): 128KB, 4-way, 20 cycle
 class RealL2CacheL3(Cache):
@@ -431,4 +432,3 @@ else:
             print(f"Detailed simulation: {args.sim_instructions:,} instructions\n")
     
     Simulation.run(args, root, system, FutureClass)
-
