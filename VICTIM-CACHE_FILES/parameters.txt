@@ -1,5 +1,7 @@
 we only changed assoc in the spec file, from either 16 or 64 for each run. 
 
+our implementation still uses MSHR's for VC any miss no alloc so we kept mshrs at 8 and buffers at 4 for both runs
+
 we directly edited the code assuming VC would be enabled and ignored mostly_excl
 aside from baseline testing,
 
