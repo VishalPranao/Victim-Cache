@@ -1,1 +1,0 @@
-build/ECE565-X86/gem5.opt configs/spec/spec_victim_cache_config.py --cpu-type=X86MinorCPU  --benchmark=nab_s --enable-fast-forward --caches --enable-victim-cache
